@@ -18,6 +18,6 @@ It’s designed as a simple learning project for beginners exploring modern Reac
 
 ---
 
-## 🖼️ Preview
+
 
 
