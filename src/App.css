@@ -1,0 +1,93 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+
+header {
+  max-width: 352px;
+  min-height: 144px;
+  text-align: center;
+}
+header > h1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #F9F4DA;
+}
+
+header > p {
+    font-size: 0.875rem;
+    max-width: 350px;
+    color: #8E8E8E;
+}
+
+.status {
+  max-width: 355px;
+  min-height: 59px;
+  background-color: #10A95B;
+  padding: 6px 6px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  color:  #F9F4DA;
+  border-radius: 4px;
+  margin-block: 30px;
+  
+}
+
+.status > h2 {
+  margin: 5px;
+}
+
+#message {
+  font-size: 16px;
+  margin: 5px;
+}
+
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 350px;
+  gap:4.5px
+}
