@@ -1,10 +1,11 @@
 import "./App.css";
 import { languages } from "./languages";
+import { useState } from "react";
 
 function App() {
   const languageList = languages.map((language) => (
     <span
-    key={language.name}
+      key={language.name}
       style={{
         backgroundColor: language.backgroundColor,
         color: language.color,
@@ -17,6 +18,28 @@ function App() {
       {language.name}
     </span>
   ));
+
+  const [currentWord, setCurrentWord] = useState("react");
+  // const wordArr = ;
+  const alphabets = Array.from(currentWord).map((alphabet, index) => {
+    return (
+      <span
+        style={{
+          height: "40px",
+          width: "40px",
+          borderBottom: "1px solid #F9F4DA",
+          // padding: "6px",
+          backgroundColor: "#323232",
+          color: "#F9F4DA",
+          textAlign: "center",
+          lineHeight: "40px",
+        }}
+        key={index}
+      >
+        {alphabet.toUpperCase()}
+      </span>
+    );
+  });
   return (
     <>
       <main>
@@ -32,6 +55,7 @@ function App() {
           <p id="message">Well done! 🎉</p>
         </section>
         <section className="languages">{languageList}</section>
+        <section className="word">{alphabets}</section>
       </main>
     </>
   );

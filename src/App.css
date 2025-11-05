@@ -91,3 +91,12 @@ header > p {
   max-width: 350px;
   gap:4.5px
 }
+
+.word {
+  max-width: 334px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+margin-top: 30px;
+}
