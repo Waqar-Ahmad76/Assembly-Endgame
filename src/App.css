@@ -41,37 +41,41 @@
   color: #888;
 } */
 
-
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 header {
   max-width: 352px;
   min-height: 144px;
   text-align: center;
 }
 header > h1 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #F9F4DA;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #f9f4da;
 }
 
 header > p {
-    font-size: 0.875rem;
-    max-width: 350px;
-    color: #8E8E8E;
+  font-size: 0.875rem;
+  max-width: 350px;
+  color: #8e8e8e;
 }
 
 .status {
-  max-width: 355px;
+  width: 355px;
   min-height: 59px;
-  background-color: #10A95B;
+  background-color: #10a95b;
   padding: 6px 6px;
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
   text-align: center;
-  color:  #F9F4DA;
+  color: #f9f4da;
   border-radius: 4px;
-  margin-block: 30px;
-  
+  margin-block: 20px;
 }
 
 .status > h2 {
@@ -83,13 +87,39 @@ header > p {
   margin: 5px;
 }
 
-
 .languages {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 350px;
-  gap:4.5px
+  gap: 4.5px;
+}
+
+span.chip {
+    border-radius: 3px;
+    padding: 4.5px;
+    position: relative;
+  
+}
+
+.lost {
+    /* Temporarily add a distinct visual style to check if the class is applied */
+    background-color: purple !important; 
+}
+
+.chip.lost::before {
+    /* border: 3px solid red; */
+    content: "💀";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 0.85rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .word {
@@ -98,5 +128,60 @@ header > p {
   justify-content: center;
   align-items: center;
   gap: 6px;
-margin-top: 30px;
+  margin-top: 30px;
+}
+
+
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 480px;
+  min-height: 137px;
+  margin-top: 25px;
+  padding: 6px;
+  gap: 6px;
+}
+
+.keyboard > button {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #d7d7d7;
+  background-color: #fcba29;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 100%;
+  color: #1e1e1e;
+}
+
+
+.keyboard > button.wrong {
+  background-color: #ec5d49;
+}
+
+.keyboard > button.correct {
+  background-color: #10a95b;
+}
+
+
+
+button.new-game {
+  background-color: #11b5e5;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  width: 225px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
+  margin-top: 15px;
+  cursor: pointer;
 }
