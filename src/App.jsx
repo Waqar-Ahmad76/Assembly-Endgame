@@ -10,12 +10,38 @@ function App() {
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
-  console.log(wrongGuessCount);
+  // console.log(wrongGuessCount);
+  const gameLost = wrongGuessCount >= languages.length - 1;
+  const gameWon = (() => {
+    let correctLetters = 0;
+    for (let letter of guessedLetters) {
+      if (currentWord.includes(letter)) {
+        correctLetters++;
+      }
+    }
+    return correctLetters === currentWord.length;
+  })();
+  const isGameOver = gameWon || gameLost;
+
+  // console.log(isGameOver);
+
+  const status = gameWon ? (
+    <>
+      <h2>You win!</h2> <p id="message">Well done! 🎉</p>
+    </>
+  ) : gameLost ? (
+    <>
+      <h2>Game over!</h2> <p id="message">You lose! Better start learning Assembly 😭</p>
+    </>
+  ) : (
+    <p> </p>
+  );
+
   const languageList = languages.map((language, index) => {
     const lostLang = index < wrongGuessCount;
-    console.log(
-      `Chip ${index}: lostLang=${lostLang}, wrongCount=${wrongGuessCount}`
-    );
+    // console.log(
+    //   `Chip ${index}: lostLang=${lostLang}, wrongCount=${wrongGuessCount}`
+    // );
     const classes = clsx("chip", {
       lost: lostLang,
     });
@@ -93,8 +119,6 @@ function App() {
     // console.log( "wrong "+wrongGuesses)
   }
 
-  
-
   return (
     <>
       <main>
@@ -104,16 +128,24 @@ function App() {
             Guess the word unde 8 attempts to keep the programming languages
             safe from Assembly!
           </p>
-          <section className="status">
-            <h2>You win!</h2>
-            <p id="message">Well done! 🎉</p>
+          <section
+            className="status"
+            style={
+              gameWon
+                ? { backgroundColor: "#10a95b" }
+                : gameLost
+                ? { backgroundColor: "#BA2A2A" }
+                : { backgroundColor: "#242424" }
+            }
+          >
+            {status}
           </section>
         </header>
 
         <section className="languages">{languageList}</section>
         <section className="word">{alphabets}</section>
         <section className="keyboard">{letterBtns}</section>
-        <button className="new-game">New Game</button>
+        {isGameOver && <button className="new-game">New Game</button>}
       </main>
     </>
   );
