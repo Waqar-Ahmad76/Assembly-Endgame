@@ -2,6 +2,7 @@ import "./App.css";
 import { languages } from "./languages";
 import { useState } from "react";
 import { clsx } from "clsx";
+import { getFarewellText } from "./util";
 
 function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
@@ -12,15 +13,9 @@ function App() {
   ).length;
   // console.log(wrongGuessCount);
   const gameLost = wrongGuessCount >= languages.length - 1;
-  const gameWon = (() => {
-    let correctLetters = 0;
-    for (let letter of guessedLetters) {
-      if (currentWord.includes(letter)) {
-        correctLetters++;
-      }
-    }
-    return correctLetters === currentWord.length;
-  })();
+  const gameWon = currentWord
+    .split("")
+    .every((letter) => guessedLetters.includes(letter));
   const isGameOver = gameWon || gameLost;
 
   // console.log(isGameOver);
@@ -31,10 +26,11 @@ function App() {
     </>
   ) : gameLost ? (
     <>
-      <h2>Game over!</h2> <p id="message">You lose! Better start learning Assembly 😭</p>
+      <h2>Game over!</h2>{" "}
+      <p id="message">You lose! Better start learning Assembly 😭</p>
     </>
-  ) : (
-    <p> </p>
+  ) : wrongGuessCount == 0 ? null : (
+    <p id="farewell-message">{getFarewellText(languages[wrongGuessCount - 1].name)}</p>
   );
 
   const languageList = languages.map((language, index) => {
@@ -94,12 +90,14 @@ function App() {
 
     return (
       <button
+      
         key={letter}
         className={clsx({
           correct: isCorrect,
           wrong: isWrong,
         })}
         onClick={() => addGuessedLetter(letter)}
+        disabled= {isGameOver }
       >
         {letter}
       </button>
@@ -135,7 +133,7 @@ function App() {
                 ? { backgroundColor: "#10a95b" }
                 : gameLost
                 ? { backgroundColor: "#BA2A2A" }
-                : { backgroundColor: "#242424" }
+                : { }
             }
           >
             {status}
