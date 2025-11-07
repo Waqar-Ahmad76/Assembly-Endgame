@@ -37,7 +37,7 @@ function App() {
       <h2>Game over!</h2>{" "}
       <p id="message">You lose! Better start learning Assembly 😭</p>
     </>
-  ) : wrongGuessCount == 0 ? null : (
+  ) : wrongGuessCount == 0 ? <p className="start-status">Guess the word!</p> : (
     <p id="farewell-message">
       {getFarewellText(languages[wrongGuessCount - 1].name)}
     </p>

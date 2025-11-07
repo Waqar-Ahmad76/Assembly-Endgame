@@ -79,6 +79,21 @@ header > p {
   /* margin-block: 15px; */
 }
 
+.start-status {
+  width: 355px;
+  min-height: 59px;
+  background-color: #242424;
+  padding: 6px 6px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  color: #f9f4da;
+  border-radius: 4px;
+  font-style: italic;
+  /* margin-block: 15px; */
+}
+
 #farewell-message {
   max-width: 355px;
   min-height: 59px;
