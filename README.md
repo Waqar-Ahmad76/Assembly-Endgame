@@ -1,23 +1,58 @@
-#  Assembly: Endgame  
+#  Assembly: Endgame
 
-A fun word-guessing game built with **React** where you must protect programming languages from Assembly by guessing the correct word in under 8 attempts!
+**Assembly: Endgame** is a fun, React-based hangman-style game where you must guess a random word before *Assembly* destroys them all!  
+You have 8 attempts — fail, and the languages perish 💀. Succeed, and celebrate with confetti 🎉!
 
 ---
 
-##  Project Overview
+##  Gameplay Overview
 
-**Assembly: Endgame** is an interactive React app that displays a list of programming languages and challenges the player to guess a hidden word before running out of attempts.
-
-This project demonstrates how React handles:
-- Component rendering  
-- Dynamic list creation  
-- Inline styling with JavaScript objects  
-- JSX syntax and expression embedding  
-
-It’s designed as a simple learning project for beginners exploring modern React.
+- Guess the hidden **a random word** one letter at a time.
+- Each wrong guess eliminates one language (marked with 💀).
+- Win by revealing all letters before running out of attempts.
+- Click **“New Game”** to start again with a new random word.
 
 ---
 
 
+
+---
+
+##  Features
+
+✅ Randomized programming language on each round  
+✅ Dynamic keyboard that updates with correct/wrong guesses  
+✅ Lost languages visually marked with 💀 overlay  
+✅ Win/Lose message system  
+✅ Confetti animation on victory  
+✅ “New Game” button to restart instantly  
+✅ Smooth styling and dynamic UI updates with React  
+
+---
+
+##  React Concepts Used
+
+| Concept | Description |
+|----------|-------------|
+| **useState Hook** | To manage guessed letters, current word, and wrong guesses |
+| **Conditional Rendering** | To show different UI for win/loss states |
+| **Array Mapping** | To render letters, keyboard buttons, and languages dynamically |
+| **Dynamic Class Names (`clsx`)** | To visually indicate correct/wrong guesses |
+| **Event Handling (`onClick`)** | For letter guessing and game reset actions |
+| **Derived State Logic** | To calculate wrong guesses and check for game completion |
+| **Component Re-rendering** | UI automatically updates as state changes |
+| **External Library Integration** | Added confetti animation for win celebration |
+
+---
+
+##  Tech Stack
+
+- **React.js**
+- **Vite** 
+- **CSS3**
+- **clsx** – for conditional class handling
+- **react-confetti** – for celebration effects
+
+---
 
 
