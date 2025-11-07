@@ -193,9 +193,7 @@ function App() {
             New Game
           </button>
         )}
-        {gameWon && <Confetti
-        recyclep={false} 
-        numberOfPieces={1000}/>}
+        {gameWon && <Confetti recyclep={false} numberOfPieces={1000} />}
       </main>
     </>
   );
