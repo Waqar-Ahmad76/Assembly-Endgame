@@ -27,6 +27,7 @@ You have 8 attempts — fail, and the languages perish 💀. Succeed, and celebr
 ✅ Confetti animation on victory  
 ✅ “New Game” button to restart instantly  
 ✅ Smooth styling and dynamic UI updates with React  
+✅ Efficient Keyboard Controls: All letter guessing can be performed via the keyboard. A global keydown listener is implemented using the useCallback and useEffect hooks, ensuring the event listener is only attached once to the document and cleaned up efficiently for optimal performance.
 
 ---
 
