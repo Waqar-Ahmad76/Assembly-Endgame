@@ -3,11 +3,17 @@ import { languages } from "./languages";
 import { useState } from "react";
 import { clsx } from "clsx";
 import { getFarewellText } from "./util";
+import { getRandomWord } from "./word";
+import Confetti from "react-confetti";
 
 function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
-  const [currentWord, setCurrentWord] = useState("REACT");
+  const [currentWord, setCurrentWord] = useState(() =>
+    getRandomWord().toUpperCase()
+  );
   const [wrongGuesses, setWrongGuesses] = useState(0);
+
+  //derived variables
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
@@ -17,7 +23,9 @@ function App() {
     .split("")
     .every((letter) => guessedLetters.includes(letter));
   const isGameOver = gameWon || gameLost;
-
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const guessesLeft = languages.length - 1 - wrongGuessCount;
+  // console.log(`guesses left ${guessesLeft}`)
   // console.log(isGameOver);
 
   const status = gameWon ? (
@@ -30,7 +38,9 @@ function App() {
       <p id="message">You lose! Better start learning Assembly 😭</p>
     </>
   ) : wrongGuessCount == 0 ? null : (
-    <p id="farewell-message">{getFarewellText(languages[wrongGuessCount - 1].name)}</p>
+    <p id="farewell-message">
+      {getFarewellText(languages[wrongGuessCount - 1].name)}
+    </p>
   );
 
   const languageList = languages.map((language, index) => {
@@ -61,28 +71,38 @@ function App() {
   });
 
   // const wordArr = ;
-  const alphabets = Array.from(currentWord).map((alphabet, index) => {
+  const alphabets = Array.from(currentWord).map((letter, index) => {
+    const className = clsx({
+      wrong: !guessedLetters.includes(letter.toUpperCase()),
+    });
+    // console.log(letter, className);
+
     return (
       <span
+        className={className}
         style={{
           height: "40px",
           width: "40px",
           borderBottom: "1px solid #F9F4DA",
           // padding: "6px",
           backgroundColor: "#323232",
-          color: "#F9F4DA",
+
           textAlign: "center",
           lineHeight: "40px",
         }}
         key={index}
       >
-        {guessedLetters.includes(alphabet) ? alphabet : " "}
+        {guessedLetters.includes(letter)
+          ? letter.toUpperCase()
+          : gameLost
+          ? letter.toUpperCase()
+          : " "}
       </span>
     );
   });
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const letterBtns = Array.from(letters).map((letter) => {
+  const letterBtns = letters.split("").map((letter) => {
     const isGuessed = guessedLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
     const isWrong = isGuessed && !currentWord.includes(letter);
@@ -90,14 +110,15 @@ function App() {
 
     return (
       <button
-      
         key={letter}
         className={clsx({
           correct: isCorrect,
           wrong: isWrong,
         })}
         onClick={() => addGuessedLetter(letter)}
-        disabled= {isGameOver }
+        disabled={isGameOver}
+        aria-disabled={isGameOver}
+        aria-label={`Letter ${letter}`}
       >
         {letter}
       </button>
@@ -110,12 +131,15 @@ function App() {
         ? prevLetters
         : [...prevLetters, alphabet];
     });
-
-    // if (!currentWord.includes(alphabet)) {
-    //   setWrongGuesses( (prevWrongGuesses) => prevWrongGuesses + 1);
-    // }
-    // console.log( "wrong "+wrongGuesses)
   }
+
+  function resetGame() {
+    setGuessedLetters([]);
+    setCurrentWord(getRandomWord());
+    setWrongGuesses(0);
+  }
+  // console.log(`current word: ${currentWord}`)
+  // console.log(`current word f: ${getRandomWord()}`)
 
   return (
     <>
@@ -128,22 +152,50 @@ function App() {
           </p>
           <section
             className="status"
+            aria-live="polite"
+            role="status"
             style={
               gameWon
                 ? { backgroundColor: "#10a95b" }
                 : gameLost
                 ? { backgroundColor: "#BA2A2A" }
-                : { }
+                : {}
             }
           >
             {status}
+          </section>
+          <section className="sr-only" aria-live="polite" role="status">
+            <p>
+              {currentWord.includes(lastGuessedLetter)
+                ? `Correct! the letter ${lastGuessedLetter} is in the word`
+                : `Sorry! the letter ${lastGuessedLetter} is not in the word`}
+              You have {guessesLeft} attempts left
+            </p>
+            <p>
+              Current word:{" "}
+              {currentWord
+                .split("")
+                .map((letter) => {
+                  return guessedLetters.includes(letter)
+                    ? letter + "."
+                    : "blank";
+                })
+                .join()}
+            </p>
           </section>
         </header>
 
         <section className="languages">{languageList}</section>
         <section className="word">{alphabets}</section>
         <section className="keyboard">{letterBtns}</section>
-        {isGameOver && <button className="new-game">New Game</button>}
+        {isGameOver && (
+          <button className="new-game" onClick={resetGame}>
+            New Game
+          </button>
+        )}
+        {gameWon && <Confetti
+        recyclep={false} 
+        numberOfPieces={1000}/>}
       </main>
     </>
   );
