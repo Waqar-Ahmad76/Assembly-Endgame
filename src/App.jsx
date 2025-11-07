@@ -1,6 +1,6 @@
 import "./App.css";
 import { languages } from "./languages";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { clsx } from "clsx";
 import { getFarewellText } from "./util";
 import { getRandomWord } from "./word";
@@ -37,7 +37,9 @@ function App() {
       <h2>Game over!</h2>{" "}
       <p id="message">You lose! Better start learning Assembly 😭</p>
     </>
-  ) : wrongGuessCount == 0 ? <p className="start-status">Guess the word!</p> : (
+  ) : wrongGuessCount == 0 ? (
+    <p className="start-status">Guess the word!</p>
+  ) : (
     <p id="farewell-message">
       {getFarewellText(languages[wrongGuessCount - 1].name)}
     </p>
@@ -140,6 +142,26 @@ function App() {
   }
   // console.log(`current word: ${currentWord}`)
   // console.log(`current word f: ${getRandomWord()}`)
+
+  const handleKeyDown = useCallback((event) => {
+    if (isGameOver){
+      return;
+    }
+    const key = event.key.toUpperCase();
+    if (key.length === 1 && key >= "A" && key <= "Z") {
+      setGuessedLetters((prevGuessedLetters) => {
+        return [...prevGuessedLetters, key];
+      });
+    }
+  }, [isGameOver]);
+
+  useEffect(() => {
+    
+     window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+  }, [handleKeyDown]);
 
   return (
     <>
