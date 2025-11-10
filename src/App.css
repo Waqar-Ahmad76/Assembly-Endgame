@@ -69,7 +69,7 @@ header > p {
   width: 355px;
   min-height: 59px;
   /* background-color: #10a95b; */
-  padding: 6px 6px;
+  /* padding: 6px 6px; */
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
@@ -81,9 +81,9 @@ header > p {
 
 .start-status {
   width: 355px;
-  min-height: 59px;
+  /* min-height: 59px; */
   background-color: #242424;
-  padding: 6px 6px;
+  /* padding: 6px 6px; */
   font-weight: 500;
   font-size: 20px;
   line-height: 100%;
@@ -98,7 +98,7 @@ header > p {
   max-width: 355px;
   min-height: 59px;
   background-color: #7a5ea7;
-  padding: 6px 6px;
+  /* padding: 6px 6px; */
   font-weight: 500;
   font-size: 20px;
   font-style: italic;
@@ -108,13 +108,13 @@ header > p {
   border-radius: 4px;
 }
 
-.status > h2 {
+/* .status > h2 {
   margin: 5px;
-}
+} */
 
 #message {
   font-size: 16px;
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .languages {
