@@ -34,7 +34,7 @@ function App() {
     </>
   ) : gameLost ? (
     <>
-      <h2>Game over!</h2>{" "}
+      <h2>Game over!</h2>
       <p id="message">You lose! Better start learning Assembly 😭</p>
     </>
   ) : wrongGuessCount == 0 ? (

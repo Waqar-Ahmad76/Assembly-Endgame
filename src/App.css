@@ -108,13 +108,14 @@ header > p {
   border-radius: 4px;
 }
 
-/* .status > h2 {
-  margin: 5px;
-} */
+.status > h2 {
+  padding-top: 5px;
+}
 
 #message {
   font-size: 16px;
-  /* margin: 5px; */
+  padding-bottom: 3px;
+  
 }
 
 .languages {
