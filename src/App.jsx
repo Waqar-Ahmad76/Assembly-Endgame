@@ -108,7 +108,7 @@ function App() {
     const isGuessed = guessedLetters.includes(letter);
     const isCorrect = isGuessed && currentWord.includes(letter);
     const isWrong = isGuessed && !currentWord.includes(letter);
-    console.log(isCorrect);
+    // console.log(isCorrect);
 
     return (
       <button
@@ -215,7 +215,7 @@ function App() {
             New Game
           </button>
         )}
-        {gameWon && <Confetti recyclep={false} numberOfPieces={1000} />}
+        {gameWon && <Confetti recycle={false} numberOfPieces={1000} />}
       </main>
     </>
   );
